@@ -48,6 +48,11 @@ Students and staff can register from the sign-up page. Change the default passwo
 
 ## Team
 
-Charitra Jain · Ronak Vaghela · Kavyansh Khandelwal · Naman Singh
+| Name | ID |
+|---|---|---|
+| Kavyansh Khandelwal | 202351063 |
+| Naman Singh | 202351087 |
+| Charitra Jain | 202351021 |
+| Ronak Vaghela | 202351152 |
 
-Instructor: Dr. Karan Verma
+## Instructor: Dr. Karan Verma
