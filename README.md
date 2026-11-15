@@ -2,7 +2,7 @@
 
 A web platform where students and staff can lodge, track and resolve campus complaints, and the administration gets visibility and accountability over the whole process.
 
-Built by **Group 18 (GNR)**, IIIT Vadodara, for the Software Project Management course.
+Built by **Group 17 (GNR)**, IIIT Vadodara, for the Software Project Management course.
 
 ## Features
 
