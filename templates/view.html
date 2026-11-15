@@ -1,0 +1,20 @@
+{% extends 'base.html' %}{% block body %}<h1>{{ c.title }}</h1><p class="sub">Complaint #{{ c.id }}</p>
+<table><tr><th width="28%">Lodged by</th><td>{{ c.user.name }} ({{ c.user.email }})</td></tr>
+<tr><th>Category / Department</th><td>{{ c.category }} / {{ c.department }}</td></tr>
+<tr><th>Status</th><td><span class="b {{ c.status|lower }}">{{ c.status }}</span></td></tr><tr><th>Currently with</th><td>{{ LEVELS[c.level] }}{% if c.level>0 %} (escalated){% endif %}</td></tr>
+<tr><th>Lodged on</th><td>{{ c.created.strftime('%d-%m-%Y %H:%M') }} UTC</td></tr>
+{% if c.status in ('Pending','In-Progress') %}<tr><th>SLA deadline</th><td>{{ c.sla_due.strftime('%d-%m-%Y %H:%M') }} UTC</td></tr>{% endif %}
+<tr><th>Description</th><td>{{ c.description }}</td></tr>
+{% if c.photo %}<tr><th>Photo</th><td><img src="{{ url_for('photo', cid=c.id) }}" width="300"></td></tr>{% endif %}
+{% if c.remarks %}<tr><th>Remarks</th><td>{{ c.remarks }}</td></tr>{% endif %}
+{% if c.rating %}<tr><th>Feedback</th><td>{{ c.rating }}/5 - {{ c.feedback }}</td></tr>{% endif %}</table>
+{% if user.role in ('dept','admin') and c.status != 'Closed' %}<h2>Update status</h2>
+<form method="post" class="card wide" style="margin:0" action="{{ url_for('update', cid=c.id) }}"><select name="status" >
+<option>In-Progress</option><option>Resolved</option><option>Rejected</option><option>Pending</option></select>
+<label>Remarks / clarification for complainant</label><textarea name="remarks">{{ c.remarks or '' }}</textarea><button>Update</button></form>{% endif %}
+{% if user.id==c.user_id and c.status=='Resolved' %}<h2>Confirm resolution</h2>
+<form method="post" class="card wide" style="margin:0" action="{{ url_for('feedback', cid=c.id) }}"><label>Are you satisfied?</label>
+<select name="satisfied" ><option value="yes">Yes - close ticket</option><option value="no">No - re-open</option></select>
+<label>Rating</label><select name="rating" >{% for i in range(5,0,-1) %}<option>{{ i }}</option>{% endfor %}</select>
+<label>Comments</label><textarea name="feedback"></textarea><button>Submit</button></form>{% endif %}
+<p><a href="{{ url_for('dashboard') }}">&lsaquo; Back to complaints</a></p>{% endblock %}

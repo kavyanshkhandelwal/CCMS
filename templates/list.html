@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block body %}
+<h1>{% if user.role in ('student','staff') %}My complaints{% elif user.role=='dept' %}{{ user.department }}{% else %}All complaints{% endif %}</h1>
+<p class="sub">{{ items|length }} shown{% if user.role in ('student','staff') %} &middot; <a href="{{ url_for('new') }}">Lodge a new complaint</a>{% endif %}</p>
+<form method="get" class="bar"><select name="status"><option value="">All statuses</option>
+{% for x in STATUSES %}<option {{ 'selected' if x==s }}>{{ x }}</option>{% endfor %}</select><button>Filter</button></form>
+<table><tr><th>ID</th><th>Subject</th><th>Category</th><th>Status</th><th>With</th><th>Date</th></tr>
+{% for c in items %}<tr><td>#{{ c.id }}</td><td><a href="{{ url_for('view', cid=c.id) }}">{{ c.title }}</a></td><td>{{ c.category }}</td>
+<td><span class="b {{ c.status|lower }}">{{ c.status }}</span></td><td>{{ LEVELS[c.level] }}</td><td>{{ c.created.strftime('%d %b %Y') }}</td></tr>
+{% else %}<tr><td colspan="6">No complaints found.</td></tr>{% endfor %}</table>{% endblock %}

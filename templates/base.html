@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campus Complaint Management System</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<div id="nav"><div><a class="brand" href="{{ url_for('index') }}">Campus CCMS</a>
+{% if user %}<a href="{{ url_for('dashboard') }}">Complaints</a>
+{% if user.role in ('student','staff') %}<a href="{{ url_for('new') }}">Lodge Complaint</a>{% endif %}
+{% if user.role == 'admin' %}<a href="{{ url_for('admin') }}">Reports</a>{% endif %}{% endif %}</div>
+<div class="r">{% if user %}{{ user.name }}<a href="{{ url_for('logout') }}">Sign out</a>{% else %}<a href="{{ url_for('login') }}">Sign in</a><a href="{{ url_for('register') }}">Register</a>{% endif %}</div></div>
+<div id="main">{% for m in get_flashed_messages() %}<div class="msg">{{ m }}</div>{% endfor %}{% block body %}{% endblock %}</div>
+<div class="foot">Campus Complaint Management System &middot; Group 18, IIIT Vadodara</div></body></html>

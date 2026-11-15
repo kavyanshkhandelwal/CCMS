@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% block body %}<h1>Reports.</h1><p class="sub">Complaint trends and department performance.</p>
+<div class="stats"><div class="stat"><b>{{ total }}</b><span>Total</span></div>{% for k,v in by_status.items() %}<div class="stat"><b>{{ v }}</b><span>{{ k }}</span></div>{% endfor %}</div>
+<h2>By category</h2><div class="stats">{% for k,v in by_cat.items() %}<div class="stat"><b>{{ v }}</b><span>{{ k }}</span></div>{% endfor %}</div>
+<h2>Department performance</h2><table><tr><th>Department</th><th>Total</th><th>Open</th><th>Escalated</th><th>Avg. resolution (hrs)</th></tr>
+{% for d,v in dept.items() %}<tr><td>{{ d }}</td><td>{{ v.total }}</td><td>{{ v.open }}</td><td>{{ v.esc }}</td><td>{{ v.avg }}</td></tr>{% endfor %}</table>
+<h2>Recurring problems</h2><table><tr><th>Category</th><th>Subject</th><th>Times reported</th></tr>
+{% for r in rec %}<tr><td>{{ r[0] }}</td><td>{{ r[1] }}</td><td>{{ r[2] }}</td></tr>{% else %}<tr><td colspan="3">No recurring issues yet.</td></tr>{% endfor %}</table>
+<p><a href="{{ url_for('dashboard') }}">All complaints &raquo;</a></p>{% endblock %}
