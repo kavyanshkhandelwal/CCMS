@@ -2,7 +2,7 @@
 
 A web platform where students and staff can lodge, track and resolve campus complaints, and the administration gets visibility and accountability over the whole process.
 
-Built by **Group 18**, IIIT Vadodara, for the Software Project Management course.
+Built by **Group 18 (GNR)**, IIIT Vadodara, for the Software Project Management course.
 
 ## Features
 
@@ -49,10 +49,10 @@ Students and staff can register from the sign-up page. Change the default passwo
 ## Team
 
 | Name | ID |
-|---|---|---|
+|---|---|
 | Kavyansh Khandelwal | 202351063 |
 | Naman Singh | 202351087 |
 | Charitra Jain | 202351021 |
 | Ronak Vaghela | 202351152 |
 
-## Instructor: Dr. Karan Verma
+### Instructor: Dr. Karan Verma
